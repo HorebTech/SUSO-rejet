@@ -1,28 +1,29 @@
-<div *ngIf="data">
-    <!-- <h3>Répartition des statuts</h3>
-    <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
-    
-    <h3>Répartition des statuts</h3>
-    <p-chart type="bar" [data]="pieData" [options]="pieOptions"></p-chart>
-  
-    <h3 class="mt-4">Détails des actions</h3>
+<div *ngIf="data" class="resultat-donnees">
+  <h2>Résumé des données de rejet</h2>
 
-    <div class="grid">
-        <div class="col-6">
-            <h3>Répartition des statuts</h3>
-            <p-chart type="bar" [data]="pieData" [options]="pieOptions"></p-chart>
-        </div>
-        <div class="col-6">
-            <h3>Répartition par variable</h3>
-            <p-chart type="bar" [data]="variablesData" [options]="variablesOptions"></p-chart>
-        </div>
-    </div> -->
-
-
+  <div class="summary-stats">
+    <div class="stat-item">
+      <h3 class="stat-title text-2xl font-bold text-black dark:text-surface-0">Total</h3>
+      <p class="stat-value text-2xl font-bold text-black dark:text-surface-0">{{ total }}</p>
+    </div>
+    <div class="stat-item">
+      <h3 class="stat-title text-2xl font-bold text-black dark:text-surface-0">Commenté</h3>
+      <p class="stat-value text-2xl font-bold text-black dark:text-surface-0">{{ commented }}</p>
+    </div>
+    <div class="stat-item">
+      <h3 class="stat-title text-2xl font-bold text-black dark:text-surface-0">Rejeté</h3>
+      <p class="stat-value text-2xl font-bold text-black dark:text-surface-0">{{ rejected }}</p>
+    </div>
+    <div class="stat-item">
+      <h3 class="stat-title text-2xl font-bold text-black dark:text-surface-0">Erreurs</h3>
+      <p class="stat-value text-2xl font-bold text-black dark:text-surface-0">{{ errors }}</p>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="data">
     <p-table [value]="actions">
     <ng-template pTemplate="header">
       <tr>
-        <!-- <th>Interview ID</th> -->
         <th>Variable</th>
         <th>Commenté</th>
         <th>Rejeté</th>
@@ -31,7 +32,6 @@
     </ng-template>
     <ng-template pTemplate="body" let-action>
       <tr>
-        <!-- <td>{{ action.interview_id }}</td> -->
         <td>{{ action.variable }}</td>
         <td>{{ action.comment_added ? '✅' : '❌' }}</td>
         <td>{{ action.rejected ? '✅' : '❌' }}</td>
@@ -39,4 +39,4 @@
       </tr>
     </ng-template>
   </p-table>
-</div>
+</div> -->

@@ -31,15 +31,21 @@ interface Statut {
     template: `
     <div class="col-span-12">
         <div class="col-span-6 xl:col-span-6">
-            <p-card header="Rejetez automatiquement les questionnaires">
+            <div header="Rejetez automatiquement les questionnaires" class="card border card-box rounded-xl border-slate-300 dark:border-slate-600">
+                <div>
+                    <p class="text-3xl font-bold text-black dark:text-surface-0">Rejet d'entretiens</p>
+                    <p>Sélectionnez le fichier de rapport concernant le questionnaire à vérifier et exportez le grâce à ce buton. Les interviews repertoriés dans ce fichier, seront rejetés automatiquement. Les enquêteurs devront synchroniser les tablettes pour appercevoir les entretiens rejetés.</p>
+                </div>   
                 <div class="rejet_resultat">
                     <form (ngSubmit)="submit()" enctype="multipart/form-data">
                     <app-file-upload (fileUploaded)="handleFileUpload($event)"></app-file-upload>
-                    <p-button type="submit" label="Soumettre" />
+                    <p-button type="submit" variant="outlined" severity="contrast" label="Soumettre" />
                     </form>
-                    <app-reject-summary [data]="result"></app-reject-summary>
+                    <div class="partie-resultat">
+                        <app-reject-summary [data]="result"></app-reject-summary>
+                    </div>
                 </div>
-            </p-card>
+            </div>
         </div>
     </div>
     `

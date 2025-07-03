@@ -7,6 +7,7 @@ import { providePrimeNG } from 'primeng/config';
 import { appRoutes } from './app.routes';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { LoaderInterceptor } from './app/intercepteur/loader.interceptor';
+import { ChartModule } from 'primeng/chart';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
             useClass: LoaderInterceptor,
             multi: true
         },
+        ChartModule,
         ConfirmationService,
         MessageService,
         provideRouter(appRoutes, withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }), withEnabledBlockingInitialNavigation()),

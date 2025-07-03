@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5003/api'
+  apiUrl: 'https://interview-api.sindevstat.com/api'
 };

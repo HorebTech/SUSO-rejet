@@ -13,8 +13,13 @@
 body, * {
     font-family: 'Roboto', sans-serif;
 }
+.p-button{
+    padding-left: 5px;
+}
 .p-button img {
-    filter: brightness(10);
+    height: auto !important;
+    width: 30px !important;
+    object-fit: contain;
 }
 .bloc_export {
     display: flex;
@@ -29,7 +34,7 @@ body, * {
     display: flex;
 }
 .p-card-body {
-    padding: 3% !important;
+    padding: 3% 0 !important;
 }
 .text-description {
     width: 50%;
@@ -37,10 +42,10 @@ body, * {
 .download_button {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 650px;
+    padding: 2%;
+}
+.card-box {
+    border-radius: 15px;
 }
 .bloc_export1 {
     width: 35%;
@@ -54,52 +59,86 @@ body, * {
 .button_one {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    padding: 10px;
+    width: calc(100% / 2);
 }
 .titre_button {font-weight: 800;font-size: 20px;margin-bottom: 10px;}
+.resultat-donnees {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
 
+.summary-stats {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item p.stat-value {
+height: 69px;
+    width: 70px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 10px solid;
+}
 .button_one p-button .p-button {
     height: 40px;
+}
+.partie-resultat {
+    width: 100%;
 }
 .rejet_resultat {
     display: flex;
 }
 .rejet_resultat form {
-    width: 50%;
-    padding: 15px;
+    width: 300px;
 }
-.rejet_resultat form {
-    width: 50%;
+.donught {
+    display: flex;
 }
 .layout-topbar .layout-topbar-logo img {
     width: 35px !important;
 }
-
-
 app-stats-widget.contents .card {
-    height: 185px;
+    min-height: 220px;
+    border-radius: 15px;
 }
-
-app-stats-widget.contents .col-span-12:nth-child(1) .card {
-    background: #dbeaff;
+.nomber-stat {
+    position: absolute;
+    bottom: 30px;
 }
-app-stats-widget.contents .col-span-12:nth-child(2) .card {
-    background: #fff1dc;
+.layout-wrapper.layout-static .layout-main-container {
+    margin-left: 15rem;
 }
-app-stats-widget.contents .col-span-12:nth-child(3) .card {
-    background: #effeff;
+.layout-main {
+    flex: 1 1 auto;
+    padding-bottom: 2rem;
+    background: var(--surface-card);
 }
-app-stats-widget.contents .col-span-12:nth-child(4) .card {
-    background: #ffdada;
+.layout-sidebar {
+    background-color: transparent;
 }
-
 .background-1 {
     background: #3b8ff8;
     padding: 5px;
     color: white;
     border-radius: 10px;
 }
-
+.layout-topbar {
+    box-shadow: 0 0 10px 1px #dfdfdf;
+}
+.layout-main {
+    background: var(--surface-card);
+    padding: 2%;
+    border-radius: 15px;
+}
 .background-2 {
     background: #f97316;
     padding: 5px;
@@ -140,5 +179,8 @@ app-stats-widget.contents .col-span-12:nth-child(4) .card {
     }
     app-stats-widget.contents .card{
         height: 100%;
+    }
+    .layout-wrapper.layout-static .layout-main-container{
+        margin-left: inherit;
     }
 }
