@@ -3,3 +3,142 @@
 @use './assets/layout/layout.scss';
 @use 'primeicons/primeicons.css';
 @use './assets/demo/demo.scss';
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto-VariableFont_wdth\,wght.ttf') format('ttf');
+  font-display: swap;
+}
+
+body, * {
+    font-family: 'Roboto', sans-serif;
+}
+.p-button img {
+    filter: brightness(10);
+}
+.bloc_export {
+    display: flex;
+}
+
+.bloc_export1 {
+    width: 35%;
+}
+
+.bloc_export2 {
+    width: 65%;
+    display: flex;
+}
+.p-card-body {
+    padding: 3% !important;
+}
+.text-description {
+    width: 50%;
+}
+.download_button {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 650px;
+}
+.bloc_export1 {
+    width: 35%;
+    padding: 15px;
+    border-radius: 10px;
+}
+.p-card-title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.button_one {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.titre_button {font-weight: 800;font-size: 20px;margin-bottom: 10px;}
+
+.button_one p-button .p-button {
+    height: 40px;
+}
+.rejet_resultat {
+    display: flex;
+}
+.rejet_resultat form {
+    width: 50%;
+    padding: 15px;
+}
+.rejet_resultat form {
+    width: 50%;
+}
+.layout-topbar .layout-topbar-logo img {
+    width: 35px !important;
+}
+
+
+app-stats-widget.contents .card {
+    height: 185px;
+}
+
+app-stats-widget.contents .col-span-12:nth-child(1) .card {
+    background: #dbeaff;
+}
+app-stats-widget.contents .col-span-12:nth-child(2) .card {
+    background: #fff1dc;
+}
+app-stats-widget.contents .col-span-12:nth-child(3) .card {
+    background: #effeff;
+}
+app-stats-widget.contents .col-span-12:nth-child(4) .card {
+    background: #ffdada;
+}
+
+.background-1 {
+    background: #3b8ff8;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+}
+
+.background-2 {
+    background: #f97316;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+}
+
+.background-3 {
+    background: #00e9ff;
+    padding: 5px 10px;
+    color: black;
+    border-radius: 10px;
+}
+
+.background-4 {
+    background: #ef4444;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+}
+
+@media(max-width: 991px) {
+    .rejet_resultat {
+        flex-direction: column;
+    }
+    .rejet_resultat form {
+        padding: 15px;
+    }
+    .bloc_export {
+        flex-direction: column;
+    }
+    .bloc_export1 {
+        width: 100%;
+    }
+    .bloc_export2 {
+        width: 100%;
+        margin-top: 20px;
+    }
+    app-stats-widget.contents .card{
+        height: 100%;
+    }
+}

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ConnexionService } from '../../../services/connexion.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
     standalone: true,
@@ -9,61 +11,102 @@ import { CommonModule } from '@angular/common';
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">Orders</span>
-                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">152</div>
+                        <span class="block text-muted-color background-1 text-xl font-medium mb-4">Questionnaires actifs</span>
                     </div>
                     <div class="flex items-center justify-center bg-blue-100 dark:bg-blue-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
-                        <i class="pi pi-shopping-cart text-blue-500 !text-xl"></i>
+                        <i class="pi pi-chart-line text-blue-500 !text-xl"></i>
                     </div>
                 </div>
-                <span class="text-primary font-medium">24 new </span>
-                <span class="text-muted-color">since last visit</span>
+                <div class="h-10">
+                    <span class="text-muted-color h-5 mb-2">Questionnaires observés dans le workspace <span class="font-bold text-blue-500 text-md">{{apiConfig.workspace}}</span></span>
+                </div>
+                <div class="dark:text-surface-0 h-5 mt-3 font-bold text-black text-4xl">{{workspage?.questionnaire_count}}</div>
             </div>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-span-3">
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">Revenue</span>
-                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">$2.100</div>
+                        <span class="block text-muted-color background-2 text-xl font-medium mb-4">Nombre total d'entretiens</span>
                     </div>
                     <div class="flex items-center justify-center bg-orange-100 dark:bg-orange-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
-                        <i class="pi pi-dollar text-orange-500 !text-xl"></i>
+                        <i class="pi pi-pen-to-square text-orange-500 !text-xl"></i>
                     </div>
                 </div>
-                <span class="text-primary font-medium">%52+ </span>
-                <span class="text-muted-color">since last week</span>
+                <div class="h-10">
+                    <span class="text-muted-color h-5 mb-2">Entretiens enregistrés</span>
+                </div>
+                <div class="dark:text-surface-0 h-5 mt-3 font-bold text-black text-4xl">{{workspage?.total_interviews}}</div>
             </div>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-span-3">
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">Customers</span>
-                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">28441</div>
+                        <span class="block text-muted-color background-3 text-xl font-medium mb-4">Entretiens terminés</span>
                     </div>
                     <div class="flex items-center justify-center bg-cyan-100 dark:bg-cyan-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
-                        <i class="pi pi-users text-cyan-500 !text-xl"></i>
+                        <i class="pi pi-stopwatch text-cyan-500 !text-xl"></i>
                     </div>
                 </div>
-                <span class="text-primary font-medium">520 </span>
-                <span class="text-muted-color">newly registered</span>
+                <div class="h-10">
+                    <span class="text-muted-color">Entretien(s) terminé(s) sur <span class="text-md text-cyan-500 font-bold">{{workspage?.total_interviews}}  </span></span>
+                </div>
+                <div class="dark:text-surface-0 h-5 font-bold text-black text-4xl">{{workspage?.status_counts.COMPLETED}}</div>
             </div>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-span-3">
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">Comments</span>
-                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">152 Unread</div>
+                        <span class="block text-muted-color background-4 text-red-500 text-xl font-medium mb-4">Entretiens rejetés</span>
                     </div>
                     <div class="flex items-center justify-center bg-purple-100 dark:bg-purple-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
-                        <i class="pi pi-comment text-purple-500 !text-xl"></i>
+                        <i class="pi pi-ban text-red-500 !text-xl"></i>
                     </div>
                 </div>
-                <span class="text-primary font-medium">85 </span>
-                <span class="text-muted-color">responded</span>
+                <div class="h-10">
+                    <span class="text-muted-color">Entretien(s) rejeté(s) sur <span class="text-md text-red-500 font-bold">{{workspage?.total_interviews}}  </span></span>
+                </div>
+                <div class="dark:text-surface-0 font-bold text-black text-4xl">{{workspage?.status_counts.REJECTEDBYSUPERVISOR}}</div>
             </div>
         </div>`
 })
-export class StatsWidget {}
+export class StatsWidget implements OnInit {
+
+    apiConfig = {
+        api_url: '',
+        username: '',
+        password: '',
+        workspace: '',
+    };
+
+    workspage! : any;
+
+    constructor(
+        private connexionService: ConnexionService,
+        private messageService: MessageService
+    ) {}
+
+    private loadConfigFromLocalStorage(): void {
+        this.apiConfig = {
+            api_url: localStorage.getItem('api_url') || '',
+            username: localStorage.getItem('username') || '',
+            password: localStorage.getItem('password') || '',
+            workspace: localStorage.getItem('selectedWorkspace') || '',
+        };
+    }
+
+    ngOnInit(): void {
+        this.loadConfigFromLocalStorage();
+        this.connexionService.getStats(this.apiConfig).subscribe({
+            next: (response) => {
+                this.workspage = response;
+            },
+            error: (error) => {
+                this.messageService.add({ severity: 'error', summary: 'Erreur', detail: error.error.message, life: 10000 });
+            }
+        })
+    }
+    
+}
