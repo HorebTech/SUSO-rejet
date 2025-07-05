@@ -1,0 +1,43 @@
+<div class="container">
+  <!-- Barre de recherche -->
+<input type="text" (input)="search($event)" placeholder="Rechercher..." class="mb-3" />
+  <!-- Table -->
+  <p-table 
+    #dt 
+    [value]="filteredActions"
+    [paginator]="true"
+    [rows]="5"
+    [responsive]="true"
+    [globalFilterFields]="['NOM_ENQ', 'variable', 'interview_key']"
+    [columns]="['NOM_ENQ', 'interview_key', 'variable', 'rejected', 'comment_added']"
+    [exportFilename]="'actions_report'"
+    exportable>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="NOM_ENQ">Nom Enquêteur <p-sortIcon field="NOM_ENQ"></p-sortIcon></th>
+        <th pSortableColumn="interview_key">Clé d'Entretien <p-sortIcon field="interview_key"></p-sortIcon></th>
+        <th pSortableColumn="variable">Variable <p-sortIcon field="variable"></p-sortIcon></th>
+        <th pSortableColumn="rejected">Rejeté <p-sortIcon field="rejected"></p-sortIcon></th>
+        <th pSortableColumn="comment_added">Commentaire Ajouté <p-sortIcon field="comment_added"></p-sortIcon></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-action>
+      <tr>
+        <td>{{ action.NOM_ENQ }}</td>
+        <td>{{ action.interview_key }}</td>
+        <td>{{ action.variable }}</td>
+        <td>{{ action.rejected ? 'Oui' : 'Non' }}</td>
+        <td>{{ action.comment_added ? 'Oui' : 'Non' }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Bouton Exporter en CSV -->
+  <p-button 
+    label="Exporter en CSV" 
+    icon="pi pi-file" 
+    (click)="exportCSV(dt)" 
+    class="p-mt-3">
+  </p-button>
+</div>

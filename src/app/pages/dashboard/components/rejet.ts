@@ -11,6 +11,7 @@ import { IftaLabelModule } from 'primeng/iftalabel';
 import { FileUploadComponent } from '../../../file-upload/file-upload.component';
 import { RejectResponse } from '../../../models/response';
 import { RejectSummaryComponent } from "./reject-summary/reject-summary.component";
+import { RejetTableComponent } from './rejet-table/rejet-table.component';
 
 interface Questionnaire {
     questionnaire_id: string;
@@ -27,7 +28,7 @@ interface Statut {
 @Component({
     standalone: true,
     selector: 'app-rejet',
-    imports: [CommonModule, CardModule, ButtonModule, FormsModule, SelectModule, IftaLabelModule, FileUploadComponent, RejectSummaryComponent],
+    imports: [CommonModule, CardModule, ButtonModule, FormsModule, SelectModule, IftaLabelModule, FileUploadComponent, RejectSummaryComponent, RejetTableComponent],
     template: `
     <div class="col-span-12">
         <div class="col-span-6 xl:col-span-6">
@@ -44,6 +45,9 @@ interface Statut {
                     <div class="partie-resultat">
                         <app-reject-summary [data]="result"></app-reject-summary>
                     </div>
+                </div>
+                <div>
+                    <app-rejet-table [data]="result"></app-rejet-table>
                 </div>
             </div>
         </div>

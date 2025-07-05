@@ -27,18 +27,21 @@ interface Workspace {
             <div class="col-span-12 xl:col-span-6">
             </div>
         </div>
-        <p-dialog header="Workspace" [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
-            <p>Veuillez sélectionner le workspace avec lequel vous souhaitez travaillez, vous aurez toutes les statistiques et pourrez apporter des commentaires aux interviews des questionnaires.</p>
-            <div class="card flex justify-center flex-col">
-                <label class="font-bold mb-2">Sélectionnez votre workspace</label>
-                <p-iftalabel class="w-full">
-                    <p-select appendTo="body" [(ngModel)]="selectedWorkspace" inputId="dd-city" [options]="workspaces" optionLabel="display_name" optionValue="name" styleClass="w-full" />
-                    <label for="dd-city">Workspaces</label>
-                </p-iftalabel>
-                <div class="mt-4">
-                    <p-button  label="Submit" (onClick)="onSubmit()"  />
-                </div>
-            </div>
+        <p-dialog header="Workspace" maskStyleClass="backdrop-blur-sm" [(visible)]="visible" [style]="{ width: '40rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+            <ng-template #headless>
+
+                <div class="card flex justify-center flex-col">
+                    <p>Veuillez sélectionner le workspace avec lequel vous souhaitez travaillez, vous aurez toutes les statistiques et pourrez apporter des commentaires aux interviews des questionnaires.</p>
+                    <label class="font-bold mb-2">Sélectionnez votre workspace</label>
+                    <p-iftalabel class="w-full">
+                        <p-select appendTo="body" [(ngModel)]="selectedWorkspace" inputId="dd-city" [options]="workspaces" optionLabel="display_name" optionValue="name" styleClass="w-full" />
+                        <label for="dd-city">Workspaces</label>
+                    </p-iftalabel>
+                    <div class="mt-4">
+                        <p-button  label="Submit" (onClick)="onSubmit()"  />
+                    </div>
+                </div>  
+             </ng-template>
         </p-dialog>
     `
 })

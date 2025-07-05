@@ -112,7 +112,7 @@ app-stats-widget.contents .card {
 }
 .nomber-stat {
     position: absolute;
-    bottom: 30px;
+    bottom: 35px;
 }
 .layout-wrapper.layout-static .layout-main-container {
     margin-left: 15rem;
@@ -131,9 +131,7 @@ app-stats-widget.contents .card {
     color: white;
     border-radius: 10px;
 }
-.layout-topbar {
-    box-shadow: 0 0 10px 1px #dfdfdf;
-}
+
 .layout-main {
     background: var(--surface-card);
     padding: 2%;
@@ -183,4 +181,16 @@ app-stats-widget.contents .card {
     .layout-wrapper.layout-static .layout-main-container{
         margin-left: inherit;
     }
+}
+
+
+app-sidebar {
+    display: none;
+}
+.layout-wrapper.layout-static .layout-main-container {
+    margin-left: 0rem;
+}
+.layout-topbar .layout-menu-button {
+    margin-right: 0.5rem;
+    display: none;
 }
